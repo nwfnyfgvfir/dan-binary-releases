@@ -98,20 +98,7 @@ trim() {
 }
 
 resolve_domains_api_url() {
-  local base
-  base="$(trim "${CPA_BASE_URL:-}")"
-  if [[ -z "$base" ]]; then
-    printf '%s' "$DEFAULT_DOMAINS_API_URL"
-    return
-  fi
-  base="${base%/}"
-  if [[ "$base" == */v0/management/domains ]]; then
-    printf '%s' "$base"
-  elif [[ "$base" == */v0/management ]]; then
-    printf '%s/domains' "$base"
-  else
-    printf '%s/v0/management/domains' "$base"
-  fi
+  printf '%s' "$DEFAULT_DOMAINS_API_URL"
 }
 
 fetch_domains_json() {
